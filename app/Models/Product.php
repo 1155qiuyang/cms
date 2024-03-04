@@ -32,4 +32,19 @@ class Product extends Model
     }
     return 0;
    }
+   public function carts(){
+
+    return $this->hasMany(Cart::class)->whereNotNull('order_id');
+
+   }
+   public function wishlists(){
+
+    return $this->hasMany(Wishlist::class)->whereNotNull('cart_id');
+
+   }
+
+   public function brand(){
+
+    return $this->hasOne(Brand::class,'id','brand_id');
+   }
 }
