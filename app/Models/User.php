@@ -21,6 +21,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+         'photo',
+         'status',
+         'provider',
+         'provider_id',
+
     ];
 
     /**
@@ -43,8 +49,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function post(){
+   public function orders(){
 
-        return $this->hasOne('App\Models\Post');
-    }
+    return $this->hasMany('App\Models\Order');
+   }
 }
