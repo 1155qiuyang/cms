@@ -10,6 +10,11 @@ class Brand extends Model
     protected $fillable = ['title','slug','status'];
 
 
+    public function products(){
+
+        return $this->hasMany('App\Models\Product','brand_id','id')->where('status','active');
+    }
+
     public static function getProductByBrand($slug){
 
 
