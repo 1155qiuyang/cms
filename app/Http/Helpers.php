@@ -3,8 +3,10 @@
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Message;
+use App\Models\Order;
 use App\Models\PostCategory;
 use App\Models\PostTag;
+use App\Models\Shipping;
 use App\Models\Wishlist;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -162,9 +164,44 @@ class Helper extends Model{
         }
       }
 
+      public static function totalWishlistPrice($user_id=''){
+        if(Auth::check()){
+            if($user_id=="") $user_id = auth()->user()->id;
+            return Wishlist::where('user_id',$user_id)->where('car_id',null)->sum('amount');
+        }else{
+            return 0;
+        }
+      }
 
-      
+      public static function grandPrice($id,$user_id){
 
+        $order = Order::find($id);
+        dd($id);
+        if($order){
+            $shipping_price = (float)$order->shipping->price;
+            $order_price = self::orderPrice($id,$user_id);
+            return number_format((float)($order_price+$shipping_price),2,'.','');
+        }else{
+            return 0;
+        }
+      }
+
+      //Admin home 
+      public static function earingPerMonth(){
+        $month_data = Order::where('status','delivered')->get();
+
+        $price = 0;
+        foreach( $month_data as $data){
+            $price = $data->cal_info->sum('price');
+        }
+        return number_format((float)($price),2,'.','');
+      }
+
+
+
+      public static function shipping(){
+        return Shipping::orderBy('id','DESC')->get();
+      }
 }
 
 ?>
