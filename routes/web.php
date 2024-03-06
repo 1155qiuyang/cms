@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\FrontendController;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,9 +21,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user/{id}',function($id){
+Auth::routes(['register'=>false]);
 
-    return User::find($id)->post;
+Route::get('user/register',[FrontendController::class,'register'])->name('register.form');
+Route::post('user/register',[FrontendController::class,'registerSubmit'])->name('register.submit');
 
+Auth::routes();
 
-});
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
