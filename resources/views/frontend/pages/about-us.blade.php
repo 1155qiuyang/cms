@@ -56,5 +56,52 @@
     </div>
 </section>
 
+<!-- End About Us -->
+
+<!-- Start Shop Service Area -->
+<section class="shop-service section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-12">
+                <!-- Start Signle Service -->
+
+                <div class="single-service">
+                    <i class="ti-rocket">
+                        <h4>Free shipping</h4>
+                        <p>Orders over $100</p>
+                    </i>
+                </div>
+                <!-- End Single Service -->
+
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <div class="single-servie">
+                    <i class="ti-reload"></i>
+                    <h4>Free Return</h4>
+                    <p>Within 20days returns</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <div class="single-service">
+                    <i class="ti-lock"></i>
+                    <h4>Secure Payment</h4>
+                    <p>100% secure payment</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <div class="single-service">
+                    <i class="ti-tag"></i>
+                        <h4>Best Peice</h4>
+                        <p>Guarantedd price</p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@include('frontend.layouts.newsletter')
+@endsection
+
 
 
